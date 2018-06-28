@@ -3,13 +3,13 @@
 
 void curl_global_init_ats() { curl_global_init(CURL_GLOBAL_ALL); }
 
-void curl_url(char *url, FILE *fp) {
-  CURL *curl_handle;
-  curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, url);
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, fp);
-  curl_easy_perform(curl_handle);
-  curl_easy_cleanup(curl_handle);
+void curl_fp(char *url, FILE *fp) {
+  CURL *handle;
+  handle = curl_easy_init();
+  curl_easy_setopt(handle, CURLOPT_URL, url);
+  curl_easy_setopt(handle, CURLOPT_WRITEDATA, fp);
+  curl_easy_perform(handle);
+  curl_easy_cleanup(handle);
 }
 
 static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream) {
@@ -28,16 +28,16 @@ extern
 fun curl_global_cleanup() : void =
   "mac#"
 
-// FIXME strptr1?
+// FIXME Strptr1?
 extern
-fun curl_url(string, !FILEptr1) : void =
+fun curl_fp(string, !FILEptr1) : void =
   "mac#"
 
 implement main0 () =
   {
     val _ = curl_global_init_ats()
     val fp = fopen_exn("page.out", file_mode_w)
-    val _ = curl_url("https://example.com", fp)
+    val _ = curl_fp("https://example.com", fp)
     val _ = fclose_exn(fp)
     val _ = curl_global_cleanup()
   }
