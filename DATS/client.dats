@@ -12,9 +12,12 @@ void curl_fp(char *url, FILE *fp) {
   curl_easy_cleanup(handle);
 }
 
-static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream) {
-  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
-  return written;
+void curl_fun(char *url, size_t write_f) {
+  CURL *handle;
+  handle = curl_easy_init();
+  curl_easy_setopt(handle, CURLOPT_URL, url);
+  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_f);
+  curl_easy_cleanup(handle);
 }
 %}
 
@@ -31,4 +34,12 @@ fun curl_global_cleanup() : void =
 // FIXME Strptr1?
 extern
 fun curl_fp(string, fp : !FILEptr1) : void =
+  "mac#"
+
+// TODO: use example of fwrite in libats/libc/SATS/stdio.sats
+vtypedef curl_ptr =
+  (Strptr1, size_t, size_t, FILEptr1) -<cloptr1> size_t
+
+extern
+fun curl_fun(string, curl_ptr) : void =
   "mac#"
