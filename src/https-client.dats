@@ -30,7 +30,7 @@ fun curl_global_cleanup() : void =
 
 // FIXME Strptr1?
 extern
-fun curl_fp(string, !FILEptr1) : void =
+fun curl_fp(string, fp : !FILEptr1) : void =
   "mac#"
 
 implement main0 () =
