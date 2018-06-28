@@ -1,10 +1,10 @@
 let prelude = https://hackage.haskell.org/package/ats-pkg/src/dhall/atspkg-prelude.dhall
 
 in prelude.default ⫽
-  { bin =
+  { test =
     [ prelude.bin ⫽
-      { src = "src/https-client.dats"
-      , target = "target/https-client"
+      { src = "src/test.dats"
+      , target = "target/https-test"
       , libs = [ "curl" ]
       }
     ]
