@@ -31,15 +31,6 @@ extern
 fun curl_global_cleanup() : void =
   "mac#"
 
-// FIXME Strptr1?
 extern
-fun curl_fp(string, fp : !FILEptr1) : void =
-  "mac#"
-
-// TODO: use example of fwrite in libats/libc/SATS/stdio.sats
-vtypedef curl_ptr =
-  (Strptr1, size_t, size_t, FILEptr1) -<cloptr1> size_t
-
-extern
-fun curl_fun(string, curl_ptr) : void =
+fun curl_fp(Strptr1, fp : !FILEptr1) : void =
   "mac#"
