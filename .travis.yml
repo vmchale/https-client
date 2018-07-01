@@ -3,16 +3,12 @@ language: c
 matrix:
   include:
     - os: linux
-    - os: osx
 cache:
   directories:
     - $HOME/.atspkg
 install:
   - curl -sSl https://raw.githubusercontent.com/vmchale/atspkg/master/bash/install.sh | bash -s
   - atspkg -V
-  - |
-    if [ `uname` = "Darwin" ]
-      brew install openssl
 script:
   - curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh -s .atsfmt.toml
   - atspkg test -vv
